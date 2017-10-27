@@ -3,7 +3,11 @@ Shadowsocks libev image with obfs.
 
 https://github.com/shadowsocks/shadowsocks-libev
 
-Latest Version: v3.0.2
+Latest Version: v3.1.0
+
+https://github.com/shadowsocks/simple-obfs
+
+Latest Version: v0.0.3
 
 Useage:
 
@@ -11,13 +15,14 @@ Useage:
 version: '2'
 services:
   shadowsocks:
-    image: xiocode/shadowsocks-libev
+    image: jpacg/shadowsocks-libev
     ports:
-      - "10010:8388/tcp"
-      - "10010:8388/udp"
+      - "8388:8388/tcp"
+      - "8388:8388/udp"
     environment:
+      - SERVER_PORT="8388"
       - METHOD="chacha20"
-      - PASSWORD="1234567890"
-      - OBFS_OPTS="obfs=http;obfs-host=www.bing.com"
+      - PASSWORD="mypassword"
+      - OPTIONS="--plugin obfs-server --plugin-opts obfs=tls;fast-open"
     restart: always
 ```

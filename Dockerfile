@@ -1,5 +1,5 @@
 FROM alpine:edge
-MAINTAINER HyperApp <hyperappcloud@gmail.com>
+MAINTAINER jpacg <jpacg0@gmail.com>
 
 ARG SS_VER=3.1.0
 ARG SS_OBFS_VER=0.0.3
@@ -61,7 +61,7 @@ ENV DNS_ADDR 8.8.8.8
 ENV DNS_ADDR_2 8.8.4.4
 ENV PLUGIN=
 ENV PLUGIN_OPTS=
-ENV CONFIG=
+ENV OPTIONS=
 
 EXPOSE $SERVER_PORT/tcp
 EXPOSE $SERVER_PORT/udp
@@ -69,9 +69,11 @@ EXPOSE $SERVER_PORT/udp
 
 CMD ss-server -s $SERVER_ADDR \
               -p $SERVER_PORT \
-              -k "$PASSWORD" \
-              -m "$METHOD" \
+              -k $PASSWORD \
+              -m $METHOD \
               -t $TIMEOUT \
-              -d "$DNS_ADDR" \
+              -d $DNS_ADDR \
+              -d $DNS_ADDR_2 \
               --fast-open \
-              -u $OPTIONS
+              -u \
+              $OPTIONS

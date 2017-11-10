@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine
 MAINTAINER jpacg <jpacg0@gmail.com>
 
 ARG SS_VER=3.1.0
@@ -67,7 +67,7 @@ EXPOSE $SERVER_PORT/tcp
 EXPOSE $SERVER_PORT/udp
 
 
-CMD ss-server -s $SERVER_ADDR \
+CMD ss-server -s :: -s $SERVER_ADDR \
               -p $SERVER_PORT \
               -k $PASSWORD \
               -m $METHOD \

@@ -7,7 +7,7 @@ Latest Version: v3.1.0
 
 https://github.com/shadowsocks/simple-obfs
 
-Latest Version: v0.0.3
+Latest Version: v0.0.4
 
 Useage:
 

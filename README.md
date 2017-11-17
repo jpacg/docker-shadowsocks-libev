@@ -7,7 +7,7 @@ Latest Version: v3.1.0
 
 https://github.com/shadowsocks/simple-obfs
 
-Latest Version: v0.0.4
+Latest Version: v0.0.5
 
 Useage:
 
@@ -23,6 +23,6 @@ services:
       - SERVER_PORT="8388"
       - METHOD="chacha20"
       - PASSWORD="mypassword"
-      - OPTIONS="--plugin obfs-server --plugin-opts obfs=tls;fast-open"
+      - OPTIONS="--plugin obfs-server --plugin-opts obfs=tls;fast-open;failover=bing.com"
     restart: always
 ```

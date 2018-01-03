@@ -3,7 +3,7 @@ Shadowsocks libev image with obfs.
 
 https://github.com/shadowsocks/shadowsocks-libev
 
-Latest Version: v3.1.1
+Latest Version: v3.1.2
 
 https://github.com/shadowsocks/simple-obfs
 
@@ -12,7 +12,7 @@ Latest Version: v0.0.5
 Useage:
 
 ```yaml
-version: '2'
+version: '3'
 services:
   shadowsocks:
     image: jpacg/shadowsocks-libev

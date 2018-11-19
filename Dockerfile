@@ -1,7 +1,7 @@
 FROM alpine
-MAINTAINER jpacg <jpacg0@gmail.com>
+LABEL jpacg <jpacg@jpacg.me>
 
-ARG SS_VER=3.2.0
+ARG SS_VER=3.2.1
 ARG SS_OBFS_VER=0.0.5
 
 RUN set -ex && \

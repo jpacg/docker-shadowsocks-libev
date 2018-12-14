@@ -1,7 +1,7 @@
 FROM alpine
 LABEL jpacg <jpacg@jpacg.me>
 
-ARG SS_VER=3.2.1
+ARG SS_VER=3.2.3
 ARG SS_OBFS_VER=0.0.5
 
 RUN set -ex && \
@@ -22,7 +22,6 @@ RUN set -ex && \
                                 pcre-dev \
                                 tar \
                                 udns-dev && \
-
     cd /tmp/ && \
     git clone https://github.com/shadowsocks/shadowsocks-libev.git && \
     cd shadowsocks-libev && \
@@ -40,7 +39,6 @@ RUN set -ex && \
     ./configure --prefix=/usr --disable-documentation && \
     make install && \
     cd .. && \
-
     runDeps="$( \
         scanelf --needed --nobanner /usr/bin/ss-* \
             | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \

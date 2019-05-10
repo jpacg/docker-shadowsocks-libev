@@ -1,15 +1,37 @@
 # docker-shadowsocks-libev
 Shadowsocks libev image with obfs.
 
-https://github.com/shadowsocks/shadowsocks-libev
+[shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev) version: v3.2.5
 
-Latest Version: v3.2.3
-
-https://github.com/shadowsocks/simple-obfs
-
-Latest Version: v0.0.5
+[v2ray-plugin](https://github.com/shadowsocks/v2ray-plugin) version: v1.1.0
 
 Useage:
+
+```
+docker run -d --restart=always --name shadowsocks-2233 --net=host -e SERVER_PORT=2233 -e PASSWORD=mypassword -e METHOD=chacha20-ietf-poly1305 -e DNS_ADDR=8.8.8.8 jpacg/shadowsocks-libev
+```
+
+---
+
+Basic
+```yaml
+version: '3'
+services:
+  shadowsocks:
+    image: jpacg/shadowsocks-libev
+    ports:
+      - "2233:2233/tcp"
+      - "2233:2233/udp"
+    environment:
+      - SERVER_PORT="2233"
+      - METHOD="chacha20-ietf-poly1305"
+      - PASSWORD="mypassword"
+    restart: always
+```
+
+---
+
+Advanced
 
 ```yaml
 version: '3'
@@ -17,12 +39,12 @@ services:
   shadowsocks:
     image: jpacg/shadowsocks-libev
     ports:
-      - "8388:8388/tcp"
-      - "8388:8388/udp"
+      - "2233:2233/tcp"
+      - "2233:2233/udp"
     environment:
-      - SERVER_PORT="8388"
-      - METHOD="chacha20"
+      - SERVER_PORT="2233"
+      - METHOD="chacha20-ietf-poly1305"
       - PASSWORD="mypassword"
-      - OPTIONS="--plugin obfs-server --plugin-opts obfs=tls;fast-open;failover=bing.com"
+      - OPTIONS="--plugin v2ray-plugin --plugin-opts \"server\""
     restart: always
 ```

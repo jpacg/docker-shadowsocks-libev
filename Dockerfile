@@ -1,8 +1,8 @@
 FROM alpine
 LABEL jpacg <jpacg@jpacg.me>
 
-ARG SS_VER=3.2.3
-ARG SS_OBFS_VER=0.0.5
+ARG SS_VER=3.2.5
+ARG SS_OBFS_VER=1.1.0
 
 RUN set -ex && \
     apk add --no-cache udns && \
@@ -31,13 +31,10 @@ RUN set -ex && \
     ./configure --prefix=/usr --disable-documentation && \
     make install && \
     cd /tmp/ && \
-    git clone https://github.com/shadowsocks/simple-obfs.git shadowsocks-obfs && \
-    cd shadowsocks-obfs && \
-    git checkout v$SS_OBFS_VER && \
-    git submodule update --init --recursive && \
-    ./autogen.sh && \
-    ./configure --prefix=/usr --disable-documentation && \
-    make install && \
+    wget -c -O v2ray-plugin-linux-amd64-v$SS_OBFS_VER.tar.gz https://github.com/shadowsocks/v2ray-plugin/releases/download/v$SS_OBFS_VER/v2ray-plugin-linux-amd64-v$SS_OBFS_VER.tar.gz && \
+    tar xzf v2ray-plugin-linux-amd64-v$SS_OBFS_VER.tar.gz && \
+    mv v2ray-plugin_linux_amd64 /usr/bin/v2ray-plugin && \
+    chmod +x /usr/bin/v2ray-plugin && \
     cd .. && \
     runDeps="$( \
         scanelf --needed --nobanner /usr/bin/ss-* \
@@ -51,14 +48,14 @@ RUN set -ex && \
 
 
 ENV SERVER_ADDR 0.0.0.0
-ENV SERVER_PORT 8388
+ENV SERVER_PORT 2233
 ENV PASSWORD=
-ENV METHOD chacha20
+ENV METHOD chacha20-ietf-poly1305
 ENV TIMEOUT 300
 ENV DNS_ADDR 8.8.8.8
 ENV DNS_ADDR_2 8.8.4.4
-ENV PLUGIN=
-ENV PLUGIN_OPTS=
+ENV PLUGIN=v2ray-plugin
+ENV PLUGIN_OPTS=server;tls;host=mydomain.me
 ENV OPTIONS=
 
 EXPOSE $SERVER_PORT/tcp

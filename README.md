@@ -8,7 +8,7 @@ Shadowsocks libev image with obfs.
 Useage:
 
 ```
-docker run -d --restart=always --name shadowsocks-2233 --net=host -e SERVER_PORT=2233 -e PASSWORD=mypassword -e METHOD=chacha20-ietf-poly1305 -e DNS_ADDR=8.8.8.8 jpacg/shadowsocks-libev
+docker run -d --restart=always --name shadowsocks-2233 --net=host -e SERVER_PORT=2233 -e PASSWORD=mypassword -e METHOD=chacha20-ietf-poly1305 jpacg/shadowsocks-libev
 ```
 
 ---
@@ -45,6 +45,6 @@ services:
       - SERVER_PORT="2233"
       - METHOD="chacha20-ietf-poly1305"
       - PASSWORD="mypassword"
-      - OPTIONS="--plugin v2ray-plugin --plugin-opts \"server\""
+      - ARGS="--plugin v2ray-plugin --plugin-opts \"server\""
     restart: always
 ```

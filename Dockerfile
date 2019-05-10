@@ -4,6 +4,14 @@ LABEL jpacg <jpacg@jpacg.me>
 ARG SS_VER=3.2.5
 ARG SS_OBFS_VER=1.1.0
 
+ENV SERVER_ADDR 0.0.0.0
+ENV SERVER_PORT 2233
+ENV PASSWORD=
+ENV METHOD      chacha20-ietf-poly1305
+ENV TIMEOUT     300
+ENV DNS_ADDRS   8.8.8.8,8.8.4.4
+ENV ARGS=
+
 RUN set -ex && \
     apk add --no-cache udns && \
     apk add --no-cache --virtual .build-deps \
@@ -47,28 +55,16 @@ RUN set -ex && \
     rm -rf /tmp/*
 
 
-ENV SERVER_ADDR 0.0.0.0
-ENV SERVER_PORT 2233
-ENV PASSWORD=
-ENV METHOD chacha20-ietf-poly1305
-ENV TIMEOUT 300
-ENV DNS_ADDR 8.8.8.8
-ENV DNS_ADDR_2 8.8.4.4
-ENV PLUGIN=v2ray-plugin
-ENV PLUGIN_OPTS=server;tls;host=mydomain.me
-ENV OPTIONS=
-
 EXPOSE $SERVER_PORT/tcp
 EXPOSE $SERVER_PORT/udp
 
-
-CMD ss-server -s :: -s $SERVER_ADDR \
-              -p $SERVER_PORT \
-              -k $PASSWORD \
-              -m $METHOD \
-              -t $TIMEOUT \
-              -d $DNS_ADDR \
-              -d $DNS_ADDR_2 \
-              --fast-open \
-              -u \
-              $OPTIONS
+CMD exec ss-server \
+        -s $SERVER_ADDR \
+        -p $SERVER_PORT \
+        -k $PASSWORD \
+        -m $METHOD \
+        -t $TIMEOUT \
+        -d $DNS_ADDRS \
+        --fast-open \
+        -u \
+        $ARGS

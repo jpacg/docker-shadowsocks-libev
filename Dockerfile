@@ -61,7 +61,7 @@ EXPOSE $SERVER_PORT/udp
 CMD exec ss-server \
         -s $SERVER_ADDR \
         -p $SERVER_PORT \
-        -k $PASSWORD \
+        -k ${PASSWORD:-$(hostname)} \
         -m $METHOD \
         -t $TIMEOUT \
         -d $DNS_ADDRS \

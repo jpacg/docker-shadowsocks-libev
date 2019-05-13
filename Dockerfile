@@ -65,6 +65,5 @@ CMD exec ss-server \
         -m $METHOD \
         -t $TIMEOUT \
         -d $DNS_ADDRS \
-        --fast-open \
         -u \
         $ARGS

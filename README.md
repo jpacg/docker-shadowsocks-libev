@@ -1,9 +1,9 @@
 # docker-shadowsocks-libev
 Shadowsocks libev image with obfs.
 
-[shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev) version: v3.2.5
+[shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev) version: v3.3.3
 
-[v2ray-plugin](https://github.com/shadowsocks/v2ray-plugin) version: v1.1.0
+[v2ray-plugin](https://github.com/shadowsocks/v2ray-plugin) version: v1.2.0
 
 Useage:
 

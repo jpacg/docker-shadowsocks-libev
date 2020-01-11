@@ -1,7 +1,7 @@
 FROM alpine
 LABEL jpacg <jpacg@jpacg.me>
 
-ARG SS_VER=3.3.3
+ARG SS_VER=3.3.4
 ARG SS_OBFS_VER=1.2.0
 
 ENV SERVER_ADDR 0.0.0.0
